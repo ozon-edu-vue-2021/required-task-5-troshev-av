@@ -35,11 +35,6 @@ export default {
       default: 0,
     },
   },
-  computed: {
-    shopcartLabel() {
-      return `Главная`;
-    },
-  },
 };
 </script>
 
