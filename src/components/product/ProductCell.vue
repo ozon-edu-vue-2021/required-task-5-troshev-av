@@ -19,7 +19,11 @@
     <div class="product-cell__name">{{ product.name }}</div>
 
     <div class="product-cell__action">
-      <product-cart-form :value="count" @change="putToShopcart($event)" />
+      <product-cart-form
+        class="product-cell__cart-form"
+        :value="count"
+        @change="putToShopcart($event)"
+      />
     </div>
   </div>
 </template>
@@ -72,5 +76,9 @@ export default {
 
 .product-cell__name {
   font-size: 1.125em;
+}
+
+.product-cell__cart-form {
+  width: 7rem;
 }
 </style>

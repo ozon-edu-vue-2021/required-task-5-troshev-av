@@ -6,18 +6,26 @@
     @click="_emitValue(1)"
   />
 
-  <ui-select v-else v-model="innerValue" :options="counterOptions" />
+  <ui-stepper
+    v-else
+    :value="value"
+    :min="min"
+    :max="max"
+    @change="_emitValue($event)"
+  />
 </template>
 
 <script>
 import UiButton from "@/components/ui/UiButton";
-import UiSelect from "@/components/ui/UiSelect";
+import UiStepper from "@/components/ui/UiStepper";
+
+import { MAX_PRODUCT_COUNTER } from "@/utils/const";
 
 export default {
   name: "ProductCartForm",
   components: {
     UiButton,
-    UiSelect,
+    UiStepper,
   },
   model: {
     prop: "value",
@@ -34,29 +42,12 @@ export default {
     },
     max: {
       type: Number,
-      default: 10,
+      default: MAX_PRODUCT_COUNTER,
     },
   },
   computed: {
-    innerValue: {
-      get() {
-        return this.value?.toString();
-      },
-      set(value) {
-        this._emitValue(+value);
-      },
-    },
     isVisibleCounter() {
       return this.value > 0;
-    },
-    counterOptions() {
-      const { min, max } = this;
-      const length = max - min + 1;
-
-      return Array.from({ length }, (_el, index) => {
-        const value = `${min + index}`;
-        return { label: value, value };
-      });
     },
   },
   methods: {

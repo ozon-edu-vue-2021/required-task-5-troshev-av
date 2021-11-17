@@ -1,22 +1,20 @@
 <template>
-  <ui-loading class="product-list" :is-loading="isLoading">
-    <div
-      class="product-list__list"
-      :class="[`product-list__list_${format}`]"
-      key="list"
-    >
-      <component
-        v-for="item in list"
-        :key="item.product.id"
-        :is="itemTag"
-        :product="item.product"
-        :count="item.counter"
-        :is-favorite="item.favorite"
-        @update:count="_putToShopcart(item.product.id, $event)"
-        @update:is-favorite="_setFavoritesStatus(item.product.id, $event)"
-      />
-    </div>
-  </ui-loading>
+  <div class="product-list">
+    <ui-loading :is-loading="isLoading">
+      <div class="product-list__list" :class="[`product-list__list_${format}`]">
+        <component
+          v-for="item in list"
+          :key="item.product.id"
+          :is="itemTag"
+          :product="item.product"
+          :count="item.counter"
+          :is-favorite="item.favorite"
+          @update:count="_putToShopcart(item.product.id, $event)"
+          @update:is-favorite="_setFavoritesStatus(item.product.id, $event)"
+        />
+      </div>
+    </ui-loading>
+  </div>
 </template>
 
 <script>

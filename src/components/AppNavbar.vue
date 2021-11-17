@@ -6,12 +6,16 @@
       </li>
 
       <li class="navbar__list-item">
-        <router-link class="navbar__link" to="/shopcart">Корзина</router-link>
+        <router-link class="navbar__link" to="/shopcart">
+          Корзина
+          <span v-if="shopcartTotalCount"> ({{ shopcartTotalCount }}) </span>
+        </router-link>
       </li>
 
       <li class="navbar__list-item">
         <router-link class="navbar__link" to="/favorites">
           Избранное
+          <span v-if="favoritesTotalCount"> ({{ favoritesTotalCount }}) </span>
         </router-link>
       </li>
     </ul>
@@ -21,6 +25,21 @@
 <script>
 export default {
   name: "AppNavbar",
+  props: {
+    shopcartTotalCount: {
+      type: Number,
+      default: 0,
+    },
+    favoritesTotalCount: {
+      type: Number,
+      default: 0,
+    },
+  },
+  computed: {
+    shopcartLabel() {
+      return `Главная`;
+    },
+  },
 };
 </script>
 

@@ -1,17 +1,28 @@
 <template>
   <div id="app" class="app">
-    <app-navbar />
+    <app-navbar
+      :shopcart-total-count="shopcartTotalCount"
+      :favorites-total-count="favoritesTotalCount"
+    />
     <router-view />
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import AppNavbar from "@/components/AppNavbar";
 
 export default {
   name: "HomeView",
   components: {
     AppNavbar,
+  },
+  computed: {
+    ...mapGetters({
+      shopcartTotalCount: "products/shopcartTotalCount",
+      favoritesTotalCount: "products/favoritesTotalCount",
+    }),
   },
   created() {
     this.$store.dispatch("init");

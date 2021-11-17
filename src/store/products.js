@@ -40,6 +40,9 @@ export default {
 
     favoritesCollection: (_state, { collection }) =>
       collection.filter(({ favorite }) => favorite),
+
+    favoritesTotalCount: (_state, { favoritesCollection }) =>
+      favoritesCollection.length,
   },
   mutations: {
     setLoadingState(state, value) {
